@@ -1,10 +1,6 @@
 // Package group provides grouping a slice via a less function
 package group
 
-import (
-	"reflect"
-)
-
 // Interface is a subset of ``sort.Interface''. Any type that can be sorted by
 // the sort package can be grouped.
 // A group is a range of elements that compare equal according to the
@@ -45,25 +41,4 @@ func (g *Grouper) Scan(data Interface) bool {
 	}
 
 	return true
-}
-
-// Slice groups any slice []T with the supplied less function and returns the
-// grouped result [][]T
-func Slice(slice interface{}, less func(i, j int) bool) interface{} {
-	ret := reflect.MakeSlice(reflect.SliceOf(reflect.TypeOf(slice)), 0, 0)
-	sv := reflect.ValueOf(slice)
-	sl := sv.Len()
-	var l, k int
-	for k = 1; k < sl; k++ {
-		if less(l, k) {
-			group := sv.Slice3(l, k, k)
-			ret = reflect.Append(ret, group)
-			l = k
-		}
-	}
-
-	group := sv.Slice3(l, k, k)
-	ret = reflect.Append(ret, group)
-
-	return ret.Interface()
 }
