@@ -1,5 +1,7 @@
 # group
 
+[![GoDoc](https://godoc.org/github.com/lemmi/group?status.svg)](https://godoc.org/github.com/lemmi/group)
+
 Group slices with a less-function or collections that implement a subset of the
 `sort.Interface`.
 
