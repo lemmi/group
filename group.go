@@ -23,7 +23,7 @@ type Grouper struct {
 	R int
 }
 
-// Scan checks Data for the next group. It will return false when no items are
+// Scan scans the sorted data for the next group. It will return false when no items are
 // left in the collection
 func (g *Grouper) Scan(data Interface) bool {
 	if g.R == data.Len() {
